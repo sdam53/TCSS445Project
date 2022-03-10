@@ -14,7 +14,6 @@
 </head>
 
 <body>
-    <!--Nagivation bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">GameTime</a>
@@ -33,13 +32,13 @@
                 <a class="nav-link" href="users.php">Users</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="developers.php">Developers</a>
+                <a class="nav-link" href="developers.php">Developers</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="publishers.php">Publishers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="reviews.php">Reviews</a>
+                <a class="nav-link active" aria-current="page" href="reviews.php">Reviews</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.php">About</a>
@@ -52,36 +51,6 @@
           </div>
         </div>
       </nav>
-
-      <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
       
 
     <!-- maybe dont need it --> 

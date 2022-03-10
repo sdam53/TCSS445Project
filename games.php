@@ -1,6 +1,9 @@
+<?php require_once('config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <title>Game Time</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, inital-scale=1.0">
@@ -8,7 +11,9 @@
         rel="stylesheet" 
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
         crossorigin="anonymous">
+    <style> 
 
+    </style>
 
 
 </head>
@@ -39,6 +44,9 @@
               <a class="nav-link" href="publishers.php">Publishers</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="reviews.php">Reviews</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="about.php">About</a>
             </li>
           </ul>
@@ -49,6 +57,49 @@
         </div>
       </div>
     </nav>
+
+    <!--table listing all video games-->
+    <div class="container">
+        <table class="table table-bordered" >
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Series</th>
+                    <th scope="col">Developer</th>
+                    <th scope="col">Publisher</th>
+                    <th scope="col">Release Date</th>
+                </tr>
+                <?php 
+                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+                if (mysqli_connect_errno()) { 
+                    echo failure;
+                    die(mysqli_connect_error());   
+                } 
+                $sql = "SELECT Title, Series, Developer, Publisher, Release_Date, Image FROM game"; 
+                if ($result = mysqli_query($connection, $sql)) { 
+                    // loop through the data 
+                    while($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
+                            <td><?php echo $row['Title'] ?></td>
+                            <td><?php echo $row['Series'] ?></td>
+                            <td><?php echo $row['Developer'] ?></td>
+                            <td><?php echo $row['Publisher'] ?></td>
+                            <td><?php echo $row['Release_Date'] ?></td>
+                        </tr>
+                <?php 
+                    } 
+                    // release the memory used by the result set 
+                    mysqli_free_result($result);  
+                }  
+                // close the database connection 
+                mysqli_close($connection); 
+                ?> 
+                
+            </thead>
+        </table>
+    </div>
       
 
     <!-- maybe dont need it --> 

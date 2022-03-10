@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2022 at 07:25 AM
+-- Generation Time: Mar 10, 2022 at 10:17 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -77,20 +77,20 @@ CREATE TABLE `game` (
 --
 
 INSERT INTO `game` (`Id`, `Title`, `Series`, `Developer`, `Publisher`, `Release_Date`, `Image`) VALUES
-(1, 'Fatal Frame: Maiden of Black Water', 'Fatal Frame', 'Koei Tecmo Games', 'Koei Tecmo', '2014-07-14', NULL),
-(2, 'Final Fantasy XV', 'Final Fantasy', 'Square Enix', 'Square Enix', '2016-11-29', NULL),
-(3, 'Nioh 2', 'Nioh', 'Team Ninja', 'Koei Tecmo', '2020-03-12', NULL),
-(4, 'Darks souls III', 'Dark Souls', 'From Software', 'Bandai Namco', '2016-03-24', NULL),
-(5, 'Ultrakill', NULL, 'Arsi \"Hakita\" Patala', 'New Blood Interactive', '2020-09-03', NULL),
-(6, 'Yu-Gi-Oh! Master Duel', 'Yu-Gi-Oh!', 'Konami', 'Konami', '2022-01-18', NULL),
-(7, 'Buck Up And Drive!', NULL, 'Fabio Fontes', 'Fabio Fontes', '2022-01-10', NULL),
-(8, 'Chrono Cross: The Radical Dreamers Edition', 'Chrono', 'Square Enix', 'Square Enix', '2022-04-07', NULL),
-(9, 'KLONOA Phantasy Reverie Series', 'Klonoa', 'Bandai Namco', 'Bandai Namco', '2022-07-08', NULL),
-(10, 'StarCraft', 'StarCrafft', 'Blizzard Entertainment', 'Blizzard Entertainment', '1998-03-31', NULL),
-(11, 'Pokémon Yellow', 'Pokémon', 'Game Freak', 'Nintendo', '1996-02-27', NULL),
-(12, 'Subnautica', 'StarCrafft', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2018-01-23', NULL),
-(13, 'FINAL FANTASY XIV Online', 'Final Fantasy', 'Square Enix', 'Square Enix', '2014-02-18', NULL),
-(14, 'Subnautica: Below Zero', 'Subnautica', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2021-05-13', NULL);
+(1, 'Fatal Frame: Maiden of Black Water', 'Fatal Frame', 'Koei Tecmo Games', 'Koei Tecmo', '2014-07-14', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(2, 'Final Fantasy XV', 'Final Fantasy', 'Square Enix', 'Square Enix', '2016-11-29', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(3, 'Nioh 2', 'Nioh', 'Team Ninja', 'Koei Tecmo', '2020-03-12', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(4, 'Darks souls III', 'Dark Souls', 'From Software', 'Bandai Namco', '2016-03-24', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(5, 'Ultrakill', NULL, 'Arsi \"Hakita\" Patala', 'New Blood Interactive', '2020-09-03', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(6, 'Yu-Gi-Oh! Master Duel', 'Yu-Gi-Oh!', 'Konami', 'Konami', '2022-01-18', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(7, 'Buck Up And Drive!', NULL, 'Fabio Fontes', 'Fabio Fontes', '2022-01-10', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(8, 'Chrono Cross: The Radical Dreamers Edition', 'Chrono', 'Square Enix', 'Square Enix', '2022-04-07', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(9, 'KLONOA Phantasy Reverie Series', 'Klonoa', 'Bandai Namco', 'Bandai Namco', '2022-07-08', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(10, 'StarCraft', 'StarCrafft', 'Blizzard Entertainment', 'Blizzard Entertainment', '1998-03-31', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(11, 'Pokémon Yellow', 'Pokémon', 'Game Freak', 'Nintendo', '1996-02-27', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(12, 'Subnautica', 'StarCrafft', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2018-01-23', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(13, 'FINAL FANTASY XIV Online', 'Final Fantasy', 'Square Enix', 'Square Enix', '2014-02-18', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg'),
+(14, 'Subnautica: Below Zero', 'Subnautica', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2021-05-13', 'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg');
 
 -- --------------------------------------------------------
 

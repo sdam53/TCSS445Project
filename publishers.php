@@ -38,6 +38,9 @@
                 <a class="nav-link active" aria-current="page" href="publishers.php">Publishers</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="reviews.php">Reviews</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="about.php">About</a>
               </li>
             </ul>
