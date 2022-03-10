@@ -23,22 +23,22 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="games.html">Games</a>
+                <a class="nav-link" href="games.php">Games</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="users.html">Users</a>
+                <a class="nav-link" href="users.php">Users</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="developers.html">Developers</a>
+                <a class="nav-link" href="developers.php">Developers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="publishers.html">Publishers</a>
+                <a class="nav-link active" aria-current="page" href="publishers.php">Publishers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About</a>
+                <a class="nav-link" href="about.php">About</a>
               </li>
             </ul>
             <form class="d-flex">
