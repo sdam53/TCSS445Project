@@ -108,6 +108,27 @@
             <p><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></p>
             <p><?php echo "Release Date:"?></p>
             <p><?php echo $row['Release_Date'] ?></p>
+            <p><?php echo "Genre/s:"?></p>
+            <p><?php echo $row['Release_Date'] ?></p>
+
+            <?php   
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                die(mysqli_connect_error());   
+            } 
+            $sql = "SELECT game_genres.Genre
+                    FROM game_genres JOIN game ON game_genres.Game_Id = game.Id
+                    WHERE game.Id = '$Id'"; 
+            if ($result = mysqli_query($connection, $sql)) { 
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <p><?php echo "<a href='genre_details.php?genre={$row['Genre']}'>{$row['Genre']}</a><br>\n" ?></p>
+            <?php     
+                }
+                mysqli_free_result($result);
+            }
+            mysqli_close($connection); 
+            ?> 
         </div>
         <?php mysqli_free_result($result); 
         mysqli_close($connection);?> 
