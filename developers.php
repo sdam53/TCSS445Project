@@ -1,3 +1,5 @@
+<?php require_once('config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,35 +55,43 @@
         </div>
       </nav>
 
-      <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+    <!--table listing all developers-->
+    <div class="container">
+        <table class="table table-bordered" >
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Name</th>
+                    <th scope="col">Headquarters</th>
+                    <th scope="col">About</th>
+
+                </tr>
+                <?php 
+                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+                if (mysqli_connect_errno()) { 
+                    echo failure;
+                    die(mysqli_connect_error());   
+                } 
+                $sql = "SELECT Name, Headquarters, About_URL
+                        FROM developer"; 
+                if ($result = mysqli_query($connection, $sql)) { 
+                    // loop through the data 
+                    while($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <th scope="row"><?php echo "<a href='developer_details.php?developer={$row['Name']}'>{$row['Name']}</a><br>\n" ?></th>
+                            <td><?php echo $row['Headquarters']?></td>
+                            <td><?php echo "<a href='{$row['About_URL']}'>{$row['About_URL']}</a><br>\n" ?></td>
+                        </tr>
+                <?php 
+                    } 
+                    // release the memory used by the result set 
+                    mysqli_free_result($result);  
+                }  
+                // close the database connection 
+                mysqli_close($connection); 
+                ?> 
+            </thead>
+        </table>
+    </div>
       
 
     <!-- maybe dont need it --> 
