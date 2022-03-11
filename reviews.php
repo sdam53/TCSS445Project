@@ -1,3 +1,5 @@
+<?php require_once('config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +53,56 @@
           </div>
         </div>
       </nav>
+
+
+
+    <!--list of reviews in asc order by date-->
+    <div class="container">
+        <table class="table table-bordered" >
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col"></th>
+                    <th scope="col">Title</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Head</th>
+                    <th scope="col">Body</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Date</th>
+                </tr>
+                <?php 
+                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+                if (mysqli_connect_errno()) { 
+                    echo failure;
+                    die(mysqli_connect_error());   
+                } 
+                $sql = "SELECT game.Title, user.Name_Display, review.Head, review.Body, review.Date, user.Id as 'userId', game.Id as 'gameId', review.Rating, game.Image
+                        FROM review JOIN game ON review.Game_Id = game.Id
+                        JOIN user ON review.User_Id = user.Id
+                        ORDER BY date DESC";
+                if ($result = mysqli_query($connection, $sql)) { 
+                    // loop through the data 
+                    while($row = mysqli_fetch_assoc($result)) {
+                ?>
+                        <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
+                            <td><?php echo "<a href='game_details.php?Id={$row['gameId']}'>{$row['Title']}</a><br>\n" ?></td>
+                            <td><?php echo "<a href='user_details.php?Id={$row['userId']}'>{$row['Name_Display']}</a><br>\n" ?></td>
+                            <td><?php echo $row['Head'] ?></td>
+                            <td><?php echo $row['Body'] ?></td>
+                            <td><?php echo $row['Rating'] ?></td>
+                            <td><?php echo $row['Date'] ?></td>
+                        </tr>
+                <?php 
+                    } 
+                    // release the memory used by the result set 
+                    mysqli_free_result($result);  
+                }  
+                // close the database connection 
+                mysqli_close($connection); 
+                ?> 
+            </thead>
+        </table>
+    </div>
+  
       
 
     <!-- maybe dont need it --> 
