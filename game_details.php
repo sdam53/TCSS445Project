@@ -109,23 +109,47 @@
             <p><?php echo "Release Date:"?></p>
             <p><?php echo $row['Release_Date'] ?></p>
         </div>
+        <?php mysqli_free_result($result); 
+        mysqli_close($connection);?> 
     </div>
 
     <!--list of reviews-->
-    
-      
-
-    
+    <div class="container">
+        <div class="row">
+            <?php   
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                die(mysqli_connect_error());   
+            } 
+            $sql = "SELECT user.Name_Display, review.Head, review.Body, review.Rating
+                    FROM review JOIN user ON review.User_Id = user.Id
+                    WHERE review.Game_Id = $Id"; 
+            if ($result = mysqli_query($connection, $sql)) {
+                    // loop through the data 
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><?php echo $row['Name_Display']?></h5>
+                            <h5 class="card-title"><?php echo $row['Head'] . " " . $row['Rating'] . "/10"?></h5>
+                            <p class="card-text">
+                                <?php echo $row['Body'] ?>
+                            </p>
+                        </div>
+                    </div>
+            <?php
+                }
+                mysqli_free_result($result); 
+            }
+            mysqli_close($connection); 
+            ?>
+        </div>
+    </div>
      <!-- maybe dont need it --> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
             crossorigin="anonymous">
     </script>
 </body>
-
-
-
-
-
 </html>
   
