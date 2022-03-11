@@ -12,6 +12,28 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
         crossorigin="anonymous">
     <style> 
+        .container {
+            position: relative;
+            text-align: justify;
+            width: 900px;
+        }
+        .text{
+            top: [height of img];
+            background: black;
+            color: white;
+            margin: auto;
+            text-align: center;
+            line-height: 10px;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
+        img {
+            /*--use height to adjust fit*/
+            display: block;
+            height: auto;
+        }
+ 
+}
     </style>
 
 
@@ -57,52 +79,41 @@
       </div>
     </nav>
 
+    <!--game image and information-->
+    <div class="container">
+        <?php
+            if (isset($_GET['Id'])) {
+                $Id = $_GET['Id'];
+            }
+        ?>
+        <?php   
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                die(mysqli_connect_error());   
+            } 
+            $sql = "SELECT Id, Title, Series, Developer, Publisher, Release_Date, Image FROM game WHERE Id = $Id"; 
+            if ($result = mysqli_query($connection, $sql)) { 
+                $row = mysqli_fetch_assoc($result);
+            }
+        ?>
+        <img class="d-block w-100" src=<?php echo $row['Image'] ?>>
+        <div class="text">   
+            <p><?php echo "Title:"?></p>
+            <p><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></p>
+            <p><?php echo "Series:"?></p>
+            <p><?php echo "<a href='series_details.php?series={$row['Series']}'>{$row['Series']}</a><br>\n" ?></p>
+            <p><?php echo "Developer:"?></p>
+            <p><?php echo "<a href='developer_details.php?developer={$row['Developer']}'>{$row['Developer']}</a><br>\n" ?></p>
+            <p><?php echo "Publisher:"?></p>
+            <p><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></p>
+            <p><?php echo "Release Date:"?></p>
+            <p><?php echo $row['Release_Date'] ?></p>
+        </div>
+    </div>
+
+    <!--list of reviews-->
     
       
-
-    
-
-        <!--table listing all video games-->
-    <div class="container">
-        <table class="table table-bordered" >
-            <thead>
-                <tr class="table-dark">
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Series</th>
-                    <th scope="col">Developer</th>
-                    <th scope="col">Publisher</th>
-                    <th scope="col">Release Date</th>
-                </tr>
-                <?php 
-                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
-                if (mysqli_connect_errno()) { 
-                    echo failure;
-                    die(mysqli_connect_error());   
-                } 
-                $sql = "SELECT Id, Title, Series, Developer, Publisher, Release_Date, Image FROM game"; 
-                if ($result = mysqli_query($connection, $sql)) { 
-                    // loop through the data 
-                    while($row = mysqli_fetch_assoc($result)) {
-                ?>
-                        <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
-                            <td><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
-                            <td><?php echo "<a href='series_details.php?series={$row['Series']}'>{$row['Series']}</a><br>\n" ?></td>
-                            <td><?php echo "<a href='developer_details.php?developer={$row['Developer']}'>{$row['Developer']}</a><br>\n" ?></td>
-                            <td><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></td>
-                            <td><?php echo $row['Release_Date'] ?></td>
-                        </tr>
-                <?php 
-                    } 
-                    // release the memory used by the result set 
-                    mysqli_free_result($result);  
-                }  
-                // close the database connection 
-                mysqli_close($connection); 
-                ?> 
-            </thead>
-        </table>
-    </div>
 
     
      <!-- maybe dont need it --> 
