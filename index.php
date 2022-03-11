@@ -1,3 +1,5 @@
+<?php require_once('config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,24 +57,48 @@
     </div>
   </nav>
 
-  <!--carousel of top 3 games--> 
+  <!--carousel of random 3 games--> 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="5000" data-pause="false" style="background-color:Black; object-fit:cover;">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
+    <?php 
+    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+    if (mysqli_connect_errno()) { 
+        echo failure;
+        die(mysqli_connect_error());   
+    } 
+    $sql = "SELECT game.Title, game.Id, game.Image
+            FROM (select review.Game_Id as 'gameid', AVG(review.Rating) as 'Average'
+                    FROM review
+                    GROUP BY review.Game_Id
+                ) as T
+            JOIN game
+            ON game.Id = gameid
+            ORDER BY RAND()
+            LIMIT 3"; 
+    if ($result = mysqli_query($connection, $sql)) { 
+        $row = mysqli_fetch_assoc($result)
+    ?>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="https://images4.alphacoders.com/115/1151249.jpg" alt="First slide">
+        <img class="d-block w-100" src=<?php echo $row['Image'] ?> alt="First slide">
       </div>
+      <?php $row = mysqli_fetch_assoc($result) ?>
       <div class="carousel-item">
-        <img class="d-block w-100" src="https://images6.fanpop.com/image/photos/38100000/Bloodborne-Wallpaper-bloodborne-38167959-1920-1080.png" alt="Second slide">
+        <img class="d-block w-100" src=<?php echo $row['Image'] ?> alt="Second slide">
       </div>
+      <?php $row = mysqli_fetch_assoc($result) ?>
       <div class="carousel-item">
-        <img class="d-block w-100" src="https://wallpaperaccess.com/full/2626154.png" alt="Third slide">
+        <img class="d-block w-100" src=<?php echo $row['Image'] ?> alt="Third slide">
       </div>
-    </div>
+    <?php 
+    }
+    mysqli_free_result($result); 
+    mysqli_close($connection); 
+    ?> 
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -80,7 +106,7 @@
     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
-    </a>
+    </a>  
   </div>
 
       
