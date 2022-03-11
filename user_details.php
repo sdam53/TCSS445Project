@@ -141,7 +141,7 @@
             if (mysqli_connect_errno()) { 
                 die(mysqli_connect_error());
             } 
-            $sql = "SELECT game.Title,review.Head, review.Body, review.Rating
+            $sql = "SELECT game.Id, game.Title,review.Head, review.Body, review.Rating, review.Date
                     FROM review JOIN game ON review.Game_Id = game.Id
                     WHERE review.User_Id = $Id"; 
             if ($result = mysqli_query($connection, $sql)) {
@@ -150,7 +150,8 @@
             ?>
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"><?php echo $row['Title']?></h5>
+                            <h4 class="card-title"><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></h5>
+                            <h5 class="card-title"><?php echo $row['Date'] ?></h5>
                             <h5 class="card-title"><?php echo $row['Head'] . " " . $row['Rating'] . "/10"?></h5>
                             <p class="card-text">
                                 <?php echo $row['Body'] ?>
