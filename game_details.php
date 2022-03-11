@@ -109,7 +109,6 @@
             <p><?php echo "Release Date:"?></p>
             <p><?php echo $row['Release_Date'] ?></p>
             <p><?php echo "Genre/s:"?></p>
-            <p><?php echo $row['Release_Date'] ?></p>
 
             <?php   
             $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
