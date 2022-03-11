@@ -126,11 +126,8 @@
                 }
                 mysqli_free_result($result);
             }
-            mysqli_close($connection); 
             ?> 
         </div>
-        <?php mysqli_free_result($result); 
-        mysqli_close($connection);?> 
     </div>
 
     <!--list of reviews-->
