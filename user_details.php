@@ -53,16 +53,56 @@
           </div>
         </div>
     </nav>
+    <?php
+        if (isset($_GET['Id'])) {
+            $Id = $_GET['Id'];
+        }
+    ?>
     
-    <!--table listing all critics-->
+    <!--user details-->
+    <div class="container">
+        <div class="row">
+            <?php   
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                die(mysqli_connect_error());
+            } 
+            $sql = "SELECT user.Name_Display, user.Name_First, user.Name_Last, user.Publication, user.User_Rating
+                    FROM user
+                    WHERE user.Id = $Id"; 
+            if ($result = mysqli_query($connection, $sql)) {
+                    // loop through the data 
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title"><?php echo $row['Name_Display']?></h2>
+                            <h4 class="card-title"><?php echo $row['Name_First'] . " " . $row['Name_Last'] ?></h4>
+                            <h4 class="card-title"><?php echo "Rating: " . $row['User_Rating'] ?></h4>
+                        </div>
+                    </div>
+            <?php
+                }
+                mysqli_free_result($result); 
+            }
+            mysqli_close($connection); 
+            ?>
+        </div>
+    </div>
+
+    <!--list of games owned-->
     <div class="container">
         <table class="table table-bordered" >
             <thead>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Games Owned</h5>
+                    </div>
+                </div>
                 <tr class="table-dark">
-                    <th scope="col"> Critic User Name</th>
-                    <th scope="col">Verified</th>
-                    <th scope="col">Rating</th>
-                    <th scope="col">Publication</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Hours Played</th>
                 </tr>
                 <?php 
                 $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
@@ -70,16 +110,16 @@
                     echo failure;
                     die(mysqli_connect_error());   
                 } 
-                $sql = "SELECT user.Id, user.Name_Display, Is_Verified, User.Publication, User_Rating, game_critic_publication.About_URL
-                FROM user JOIN game_critic_publication ON User.Publication = game_critic_publication.Publication"; 
+                $sql = "SELECT game.Title, owned_games.Hours_Played, game.Image, game.Id
+                        FROM owned_games JOIN game ON owned_games.Game_Id = game.Id
+                        WHERE owned_games.user_Id = $Id"; 
                 if ($result = mysqli_query($connection, $sql)) { 
                     // loop through the data 
                     while($row = mysqli_fetch_assoc($result)) {
                 ?>
-                        <th scope="row"><?php echo "<a href='user_details.php?Id={$row['Id']}'>{$row['Name_Display']}</a><br>\n" ?></th>
-                            <td><?php echo $row['Is_Verified']?></td>
-                            <td><?php echo $row['User_Rating']?></td>
-                            <td><?php echo "<a href='{$row['About_URL']}'>{$row['Publication']}</a><br>\n" ?></td>
+                        <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
+                            <td><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
+                            <td><?php echo $row['Hours_Played'] ?></td>
                         </tr>
                 <?php 
                     } 
@@ -93,45 +133,38 @@
         </table>
     </div>
 
-    <!--table listing all other users-->
+    <!--list of reviews by this user-->
     <div class="container">
-        <table class="table table-bordered" >
-            <thead>
-                <tr class="table-dark">
-                    <th scope="col">User Name</th>
-                    <th scope="col">Verified</th>
-                    <th scope="col">Rating</th>
-                </tr>
-                <?php 
-                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
-                if (mysqli_connect_errno()) { 
-                    echo failure;
-                    die(mysqli_connect_error());   
-                } 
-                $sql = "SELECT Id, user.Name_Display, Is_Verified, User_Rating
-                        FROM user
-                        WHERE Publication IS NULL";
-                if ($result = mysqli_query($connection, $sql)) { 
+        <div class="row">
+            <?php   
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                die(mysqli_connect_error());
+            } 
+            $sql = "SELECT game.Title,review.Head, review.Body, review.Rating
+                    FROM review JOIN game ON review.Game_Id = game.Id
+                    WHERE review.User_Id = $Id"; 
+            if ($result = mysqli_query($connection, $sql)) {
                     // loop through the data 
-                    while($row = mysqli_fetch_assoc($result)) {
-                ?>
-                        <th scope="row"><?php echo "<a href='user_details.php?Id={$row['Id']}'>{$row['Name_Display']}</a><br>\n" ?></th>
-                            <td><?php echo $row['Is_Verified']?></td>
-                            <td><?php echo $row['User_Rating'] ?></td>
-                        </tr>
-                <?php 
-                    } 
-                    // release the memory used by the result set 
-                    mysqli_free_result($result);  
-                }  
-                // close the database connection 
-                mysqli_close($connection); 
-                ?> 
-            </thead>
-        </table>
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title"><?php echo $row['Title']?></h5>
+                            <h5 class="card-title"><?php echo $row['Head'] . " " . $row['Rating'] . "/10"?></h5>
+                            <p class="card-text">
+                                <?php echo $row['Body'] ?>
+                            </p>
+                        </div>
+                    </div>
+            <?php
+                }
+                mysqli_free_result($result); 
+            }
+            mysqli_close($connection); 
+            ?>
+        </div>
     </div>
-
-
 
     <!-- maybe dont need it --> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
@@ -139,9 +172,4 @@
             crossorigin="anonymous">
     </script>
 </body>
-
-
-
-
-
 </html>
