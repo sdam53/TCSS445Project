@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2022 at 01:20 AM
+-- Generation Time: Mar 12, 2022 at 03:06 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gametime`
+-- Database: `game_time`
 --
 
 -- --------------------------------------------------------
@@ -147,17 +147,32 @@ CREATE TABLE `game_genres` (
 
 INSERT INTO `game_genres` (`Genre`, `Game_Id`) VALUES
 ('Action', 3),
+('Action RPG', 15),
 ('Anime', 1),
+('Anime', 6),
 ('Card', 6),
+('Character Customization', 3),
+('Character Customization', 13),
+('Exploration', 12),
+('Fantasy', 19),
 ('Horror', 1),
 ('Japanese RPG', 2),
 ('Japanese RPG', 8),
 ('Japanese RPG', 11),
 ('Japanese RPG', 13),
+('Japanese RPG', 20),
+('MMO', 13),
+('MMO', 18),
 ('Nudity', 1),
+('Open World', 2),
+('Open World', 15),
+('Party-Based RPG', 8),
 ('Racing games are a video game ge', 7),
 ('RPG', 4),
+('RPG', 19),
 ('Souls-Like', 4),
+('Souls-Like', 15),
+('Story Rich', 19),
 ('Underwater', 12);
 
 -- --------------------------------------------------------
@@ -218,6 +233,7 @@ INSERT INTO `genres` (`Name`, `Description`) VALUES
 ('Horror', 'A horror game is a video game genre centered on horror fiction and typically designed to scare the player. Unlike most other video game genres, which are classified by their gameplay, horror games are nearly always based on narrative or visual presentation, and use a variety of gameplay types.'),
 ('Japanese RPG', 'Japanese Role-Playing Games (commonly known as JRPG) are games that have distinct features from Western-RPGs. JRPGs are typically made by Japanese developers but not exclusively. The term JRPG stems from console RPGs which defines games like Dragon Quest or Final Fantasy.'),
 ('Mature', NULL),
+('MMO', 'MMORPG means massively multiplayer online role-playing games, and it\'s a type of video game that combines elements of role-playing games (RPGs) with the gameplay of multiplayer online gaming worlds.'),
 ('Mystery', 'The mystery genre is a genre of fiction that follows a crime (like a murder or a disappearance) from the moment it is committed to the moment it is solved.'),
 ('Nudity', NULL),
 ('Open World', 'Open-world video games are a type of video game where a player can roam freely through a virtual world and is given considerable freedom in choosing how or when to approach objectives.'),
@@ -257,23 +273,37 @@ CREATE TABLE `owned_games` (
 INSERT INTO `owned_games` (`Game_Id`, `User_Id`, `Hours_Played`) VALUES
 (1, 1, 20),
 (1, 3, 8),
+(1, 10, 20),
 (2, 1, 100),
+(2, 2, 37),
 (2, 3, 20),
 (2, 9, 86),
 (3, 1, 100),
 (3, 6, 37),
 (3, 7, 16),
+(3, 13, 9),
 (4, 1, 200),
 (4, 2, 16),
 (4, 3, 31),
 (4, 8, 81),
+(4, 11, 10),
+(5, 7, 16),
+(5, 9, 7),
+(6, 8, 2),
 (6, 10, 1),
 (7, 2, 7),
 (7, 10, 4),
 (9, 13, 68),
 (10, 8, 27),
 (10, 12, 800),
-(12, 2, 30);
+(11, 11, 50),
+(12, 2, 30),
+(12, 8, 5),
+(15, 1, 45),
+(16, 12, 13),
+(17, 12, 20),
+(18, 6, 100),
+(20, 6, 20);
 
 -- --------------------------------------------------------
 
