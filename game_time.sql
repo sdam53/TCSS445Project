@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2022 at 12:24 PM
+-- Generation Time: Mar 12, 2022 at 01:20 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `game_time`
+-- Database: `gametime`
 --
 
 -- --------------------------------------------------------
@@ -43,6 +43,7 @@ INSERT INTO `developer` (`Name`, `Headquarters`, `About_URL`) VALUES
 ('Bandai Namco', 'Tokyo, Japan', 'https://www.bandainamcoent.com/'),
 ('Bethesda Game Studios', 'Rockville, MD', 'https://bethesdagamestudios.com/'),
 ('Blizzard Entertainment', 'Irvine, CA', 'http://blizzard.com/'),
+('Digital Extremes', 'London, Canada', 'https://www.digitalextremes.com/'),
 ('Fabio Fontes', NULL, 'https://fabiofontes.com/'),
 ('From Software', 'Tokyo, Japan', 'https://www.fromsoftware.jp/ww/'),
 ('Game Freak', 'Setagaya City, Tokyo, Japan', 'https://www.gamefreak.co.jp'),
@@ -50,6 +51,8 @@ INSERT INTO `developer` (`Name`, `Headquarters`, `About_URL`) VALUES
 ('Koei Tecmo Games', 'Yokohama, Kanagawa, Japan', 'https://www.koeitecmoamerica.com/'),
 ('Konami', 'Chuo City, Tokyo, Japan', 'https://www.konami.com/'),
 ('Machine Games', 'Uppsala, Sweden', 'https://www.machinegames.com/'),
+('Rubeki', 'Ontario, Canada', 'https://rubeki.com/'),
+('Sloclap', 'Paris, France', 'http://sloclap.com/en'),
 ('Square Enix', 'Shinjuku City, Tokyo, Japan', 'https://www.square-enix.com/'),
 ('Tango Gameworks', 'Tokyo, Japan', 'https://www.tangogameworks.com/'),
 ('Team Ninja', 'Tokyo, Japan', 'https://teamninja.com/'),
@@ -90,7 +93,13 @@ INSERT INTO `game` (`Id`, `Title`, `Series`, `Developer`, `Publisher`, `Release_
 (11, 'Pokémon Yellow', 'Pokémon', 'Game Freak', 'Nintendo', '1996-02-27', 'https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/game_boy_4/H2x1_GB_PokemonYellow_enGB_image1600w.jpg'),
 (12, 'Subnautica', 'StarCrafft', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2018-01-23', 'https://cdn.akamai.steamstatic.com/steam/apps/264710/capsule_616x353.jpg?t=1634241829'),
 (13, 'FINAL FANTASY XIV Online', 'Final Fantasy', 'Square Enix', 'Square Enix', '2014-02-18', 'https://cdn.akamai.steamstatic.com/steam/apps/39210/capsule_616x353.jpg?t=1638928577'),
-(14, 'Subnautica: Below Zero', 'Subnautica', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2021-05-13', 'https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_SubnauticaBelowZero_UnknownWorldsEntertainmentInc_S1_2560x1440-c8f0ba616d3dcd2ef3dcdd0c7d5e8967');
+(14, 'Subnautica: Below Zero', 'Subnautica', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2021-05-13', 'https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_SubnauticaBelowZero_UnknownWorldsEntertainmentInc_S1_2560x1440-c8f0ba616d3dcd2ef3dcdd0c7d5e8967'),
+(15, 'Elden Ring', NULL, 'From Software', 'Bandai Namco', '2022-02-25', 'https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg?t=1646817776'),
+(16, 'Lorn\'s Lure: Prologue', NULL, 'Rubeki', 'Rubeki', '2022-03-11', 'https://cdn.cloudflare.steamstatic.com/steam/apps/1417930/header.jpg?t=1647006655'),
+(17, 'Sifu', NULL, 'Sloclap', 'Sloclap', '2022-02-06', 'https://cdn2.unrealengine.com/egs-greeneye-sloclap-ic1-400x400-7f5493d6af29.png?h=270&resize=1&w=480'),
+(18, 'Warframe', NULL, 'Digital Extremes', 'Digital Extremes', '2013-03-25', 'https://cdn.cloudflare.steamstatic.com/steam/apps/230410/header.jpg?t=1645212234'),
+(19, 'The Elder Scrolls V: Skyrim Special Edition', 'The Elder Scrolls', 'Bethesda Game Studios', 'Bethesda Softworks', '2016-10-27', 'https://cdn.cloudflare.steamstatic.com/steam/apps/489830/header.jpg?t=1636654357'),
+(20, 'Pokémon Legends: Arceus', 'Pokémon', 'Game Freak', 'Nintendo', '2022-01-28', 'https://assets.nintendo.com/image/upload/ar_16:9,b_auto,c_pad,dpr_1.0,f_auto,q_auto,w_1200/b_rgb:ffffff/v1/ncom/en_US/games/switch/p/pokemon-legends-arceus-switch/hero');
 
 -- --------------------------------------------------------
 
@@ -284,13 +293,17 @@ CREATE TABLE `publisher` (
 
 INSERT INTO `publisher` (`Name`, `Headquarters`, `About_URL`) VALUES
 ('Bandai Namco', 'Tokyo, Japan', 'https://www.bandainamcoent.com/'),
+('Bethesda Softworks', 'Rockville, MD', 'https://bethesda.net/'),
 ('Blizzard Entertainment', 'Irvine, CA', 'http://blizzard.com/'),
 ('Devolver Digital', 'Austin, TX', 'https://www.devolverdigital.com/'),
+('Digital Extremes', 'London, Canada', 'https://www.digitalextremes.com/'),
 ('Fabio Fontes', NULL, 'https://fabiofontes.com/'),
 ('Koei Tecmo', 'Yokohama, Kanagawa, Japan', 'https://www.koeitecmoamerica.com/'),
 ('Konami', 'Chuo City, Tokyo, Japan', 'https://www.konami.com/'),
 ('New Blood Interactive', 'Dusk, Pennsylvania', 'https://newblood.games/'),
 ('Nintendo', 'Kyoto, Kyoto, Japan', 'https://www.nintendo.com/'),
+('Rubeki', 'Ontario, Canada', 'https://rubeki.com/'),
+('Sloclap', 'Paris, France', 'http://sloclap.com/'),
 ('Sony Interactive Entertainment 	', 'San Mateo, CA', 'https://www.sie.com/'),
 ('Square Enix', 'Shinjuku City, Tokyo, Japan', 'https://www.square-enix.com/'),
 ('Tencent Games', 'Shenzhen, China', 'https://www.tencent.com/'),
@@ -355,6 +368,7 @@ INSERT INTO `series` (`Name`, `Description`) VALUES
 ('Pokémon', 'Pokémon[a][1][2][3] (an abbreviation for Pocket Monsters[b] in Japan) is a Japanese media franchise managed by The Pokémon Company, a company founded by Nintendo, Game Freak, and Creatures.'),
 ('StarCrafft', 'StarCraft is a military science fiction media franchise created by Chris Metzen and James Phinney and owned by Blizzard Entertainment.'),
 ('Subnautica', 'Subnautica is an open-world survival action-adventure video game developed and published by Unknown Worlds Entertainment. Players are free to explore the ocean on the alien planet 4546B, after their spaceship, the Aurora, crashes on the planet\'s surface.'),
+('The Elder Scrolls', NULL),
 ('Yu-Gi-Oh!', 'Yu-Gi-Oh! (Japanese: 遊☆戯☆王, Hepburn: Yū-Gi-Ō!, lit. \"King of Games\") is a Japanese manga series about trading card gaming written and illustrated by Kazuki Takahashi.');
 
 -- --------------------------------------------------------
@@ -478,7 +492,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `game`
 --
 ALTER TABLE `game`
-  MODIFY `Id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `user`
