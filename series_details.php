@@ -7,6 +7,8 @@
     <title>Game Time</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <!--style sheets-->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
@@ -33,10 +35,7 @@
             display: block;
             height: auto;
         }
- 
-}
     </style>
-
 
 </head>
 
@@ -110,50 +109,54 @@
 
     <!--table listing all video games series-->
     <div class="container">
-        <table class="table table-bordered" >
+        <table data-toggle="table" class="sortable">
             <thead>
                 <tr class="table-dark">
-                    <th scope="col">Image</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Developer</th>
-                    <th scope="col">Publisher</th>
-                    <th scope="col">Release Date</th>
+                    <th scope="col"></th>
+                    <th data-sortable="true" scope="col">Title</th>
+                    <th data-sortable="true" scope="col">Developer</th>
+                    <th data-sortable="true" scope="col">Publisher</th>
+                    <th data-sortable="true" scope="col">Release Date</th>
                 </tr>
-                <?php 
-                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
-                if (mysqli_connect_errno()) { 
-                    echo failure;
-                    die(mysqli_connect_error());   
-                } 
-                $sql = "SELECT game.Image, game.Title, game.Developer, game.Publisher, game.Release_Date, game.Id
-                        FROM game_series JOIN game ON game_series.Game_Id = game.Id
-                        WHERE game_series.Series = '$series'"; 
-                if ($result = mysqli_query($connection, $sql)) { 
-                    // loop through the data 
-                    while($row = mysqli_fetch_assoc($result)) {
-                ?>
-                        <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
-                            <td><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
-                            <td><?php echo "<a href='developer_details.php?developer={$row['Developer']}'>{$row['Developer']}</a><br>\n" ?></td>
-                            <td><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></td>
-                            <td><?php echo $row['Release_Date'] ?></td>
-                        </tr>
-                <?php 
-                    } 
-                    // release the memory used by the result set 
-                    mysqli_free_result($result);  
-                }  
-                // close the database connection 
-                mysqli_close($connection); 
-                ?> 
             </thead>
+            <?php 
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                echo failure;
+                die(mysqli_connect_error());   
+            } 
+            $sql = "SELECT game.Image, game.Title, game.Developer, game.Publisher, game.Release_Date, game.Id
+                    FROM game_series JOIN game ON game_series.Game_Id = game.Id
+                    WHERE game_series.Series = '$series'"; 
+            if ($result = mysqli_query($connection, $sql)) { 
+                // loop through the data 
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
+                        <td><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
+                        <td><?php echo "<a href='developer_details.php?developer={$row['Developer']}'>{$row['Developer']}</a><br>\n" ?></td>
+                        <td><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></td>
+                        <td><?php echo $row['Release_Date'] ?></td>
+                    </tr>
+            <?php 
+                } 
+                // release the memory used by the result set 
+                mysqli_free_result($result);  
+            }  
+            // close the database connection 
+            mysqli_close($connection); 
+            ?> 
         </table>
     </div>
-     <!-- maybe dont need it --> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-            crossorigin="anonymous">
+
+    <!--scripts--> 
+    <script src="extensions/multiple-sort/bootstrap-table-multiple-sort.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
     </script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 </body>
 </html>
   

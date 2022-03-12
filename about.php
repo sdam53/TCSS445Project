@@ -4,6 +4,7 @@
     <title>Game Time</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <!--stylesheet-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
@@ -49,24 +50,13 @@
         </div>
       </div>
   </nav>
+
+  <!--information-->
   <div class="container">
     <h1 class="text-center"> Welcome!!!<br> 
       This is TCSS 445 Group 6 Project<br> 
       Here you can look up and add reviews to your favorite games<br>
       Developers: Shilnara Dam</h1>
   </div>
-
-      
-
-    <!-- maybe dont need it --> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-            crossorigin="anonymous">
-    </script>
 </body>
-
-
-
-
-
 </html>

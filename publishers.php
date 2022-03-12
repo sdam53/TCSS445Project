@@ -6,6 +6,8 @@
     <title>Game Time</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, inital-scale=1.0">
+    <!--style sheets-->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
@@ -56,50 +58,48 @@
       
       <!--table listing all publisher-->
     <div class="container">
-        <table class="table table-bordered" >
+        <table data-toggle="table" class="sortable">
             <thead>
                 <tr class="table-dark">
-                    <th scope="col">Name</th>
-                    <th scope="col">Headquarters</th>
+                    <th data-sortable="true" scope="col">Name</th>
+                    <th data-sortable="true" scope="col">Headquarters</th>
                     <th scope="col">About</th>
                 </tr>
-                <?php 
-                $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
-                if (mysqli_connect_errno()) { 
-                    echo failure;
-                    die(mysqli_connect_error());   
-                } 
-                $sql = "SELECT Name, Headquarters, About_URL
-                        FROM publisher"; 
-                if ($result = mysqli_query($connection, $sql)) { 
-                    // loop through the data 
-                    while($row = mysqli_fetch_assoc($result)) {
-                ?>
-                        <th scope="row"><?php echo "<a href='publisher_details.php?publisher={$row['Name']}'>{$row['Name']}</a><br>\n" ?></th>
-                            <td><?php echo $row['Headquarters']?></td>
-                            <td><?php echo "<a href='{$row['About_URL']}'>{$row['About_URL']}</a><br>\n" ?></td>
-                        </tr>
-                <?php 
-                    } 
-                    // release the memory used by the result set 
-                    mysqli_free_result($result);  
-                }  
-                // close the database connection 
-                mysqli_close($connection); 
-                ?> 
             </thead>
+            <?php 
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                echo failure;
+                die(mysqli_connect_error());   
+            } 
+            $sql = "SELECT Name, Headquarters, About_URL
+                    FROM publisher"; 
+            if ($result = mysqli_query($connection, $sql)) { 
+                // loop through the data 
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <th scope="row"><?php echo "<a href='publisher_details.php?publisher={$row['Name']}'>{$row['Name']}</a><br>\n" ?></th>
+                        <td><?php echo $row['Headquarters']?></td>
+                        <td><?php echo "<a href='{$row['About_URL']}'>{$row['About_URL']}</a><br>\n" ?></td>
+                    </tr>
+            <?php 
+                } 
+                // release the memory used by the result set 
+                mysqli_free_result($result);  
+            }  
+            // close the database connection 
+            mysqli_close($connection); 
+            ?> 
         </table>
     </div>
 
-    <!-- maybe dont need it --> 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
-            crossorigin="anonymous">
+    <!--scripts--> 
+    <script src="extensions/multiple-sort/bootstrap-table-multiple-sort.js"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
     </script>
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
 </body>
-
-
-
-
-
 </html>
