@@ -1,3 +1,7 @@
+<!--
+games details page that lists the games details and list all reviews for that game
+-->
+
 <?php require_once('config.php'); ?>
 
 <!DOCTYPE html>

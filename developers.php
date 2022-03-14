@@ -1,3 +1,7 @@
+<!--
+developer page that lists all developers in the database
+-->
+
 <?php require_once('config.php'); ?>
 
 <!DOCTYPE html>

@@ -1,3 +1,7 @@
+<!--
+publisher page that lists all publisher in the database
+-->
+
 <?php require_once('config.php'); ?>
 
 <!DOCTYPE html>

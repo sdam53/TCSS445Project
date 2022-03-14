@@ -1,3 +1,7 @@
+<!--
+users page that lists all users seperated into 2 categories, critic or normal user
+-->
+
 <?php require_once('config.php'); ?>
 
 <!DOCTYPE html>

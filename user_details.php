@@ -1,3 +1,7 @@
+<!--
+user details page that gives information on a certain user and lists all reviews creeated by them, all games owned, and recomended games
+-->
+
 <?php require_once('config.php'); ?>
 
 <!DOCTYPE html>
@@ -90,49 +94,6 @@
         </div>
     </div>
 
-    <!--list of games owned-->
-    <div class="container">
-        <table data-toggle="table" class="sortable">
-            <thead>
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Games Owned</h5>
-                    </div>
-                </div>
-                <tr class="table-dark">
-                    <th scope="col"></th>
-                    <th data-sortable="true" scope="col">Title</th>
-                    <th data-sortable="true" scope="col">Hours Played</th>
-                </tr>
-            </thead>
-            <?php 
-            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
-            if (mysqli_connect_errno()) { 
-                echo failure;
-                die(mysqli_connect_error());   
-            } 
-            $sql = "SELECT game.Title, owned_games.Hours_Played, game.Image, game.Id
-                    FROM owned_games JOIN game ON owned_games.Game_Id = game.Id
-                    WHERE owned_games.user_Id = $Id"; 
-            if ($result = mysqli_query($connection, $sql)) { 
-                // loop through the data 
-                while($row = mysqli_fetch_assoc($result)) {
-            ?>
-                    <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
-                        <td><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
-                        <td><?php echo $row['Hours_Played'] ?></td>
-                    </tr>
-            <?php 
-                } 
-                // release the memory used by the result set 
-                mysqli_free_result($result);  
-            }  
-            // close the database connection 
-            mysqli_close($connection); 
-            ?> 
-        </table>
-    </div>
-
     <!--list of reviews by this user-->
     <div class="container">
         <div class="row">
@@ -165,6 +126,108 @@
             mysqli_close($connection); 
             ?>
         </div>
+    </div>
+
+    <!--list of games owned-->
+    <div class="container">
+        <table data-toggle="table" class="sortable">
+            <thead>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Games Owned</h5>
+                    </div>
+                </div>
+                <tr class="table-dark">
+                    <th scope="col"></th>
+                    <th data-sortable="true" scope="col">Title</th>
+                    <th data-sortable="true" scope="col">Hours Played</th>
+                </tr>
+            </thead>
+            <?php 
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                echo failure;
+                die(mysqli_connect_error());   
+            } 
+            $sql = "SELECT game.Title, owned_games.Hours_Played, game.Image, game.Id
+                    FROM owned_games JOIN game ON owned_games.Game_Id = game.Id
+                    WHERE owned_games.user_Id = $Id"; 
+            if ($result = mysqli_query($connection, $sql)) { 
+                // loop through the data 
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
+                        <td><?php echo "<a href='game_details.php?Title={$row['Title']}&Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
+                        <td><?php echo $row['Hours_Played'] ?></td>
+                    </tr>
+            <?php 
+                } 
+                // release the memory used by the result set 
+                mysqli_free_result($result);  
+            }  
+            // close the database connection 
+            mysqli_close($connection); 
+            ?> 
+        </table>
+    </div>
+
+    <!--list of recomended games-->
+    <div class="container">
+        <table data-toggle="table" class="sortable">
+            <thead>
+            <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Recomended Games</h5>
+                    </div>
+                </div>
+                <tr class="table-dark">
+                    <th scope="col"></th>
+                    <th data-sortable="true" scope="col">Title</th>
+                    <th data-sortable="true" scope="col">Series</th>
+                    <th data-sortable="true" scope="col">Developer</th>
+                    <th data-sortable="true" scope="col">Publisher</th>
+                    <th data-sortable="true" scope="col">Release Date</th>
+                </tr>
+            </thead>
+            <?php 
+            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME); 
+            if (mysqli_connect_errno()) { 
+                echo failure;
+                die(mysqli_connect_error());   
+            } 
+            $sql = "SELECT DISTINCT(game.Title), game.Id, game.Image, game.Series, game.Developer, game.Publisher, game.Release_Date
+                        FROM (SELECT DISTINCT(genres.Name) as 'genreName', game.image, game.Title, game.Series, game.Developer, game.Publisher, game.Release_Date
+                            FROM game JOIN owned_games on game.Id = owned_games.Game_Id
+                            JOIN game_genres ON game.Id = game_genres.Game_Id
+                            JOIN genres ON game_genres.Genre = genres.Name
+                            where owned_games.User_Id = $Id) as A
+                    JOIN game_genres ON genreName = game_genres.Genre
+                    JOIN game ON game_genres.Game_Id = game.Id 
+                    WHERE game.Title NOT IN (SELECT game.Title
+                        FROM game JOIN owned_games on game.Id = owned_games.Game_Id
+                        JOIN game_genres ON game.Id = game_genres.Game_Id
+                        JOIN genres ON game_genres.Genre = genres.Name
+                        WHERE owned_games.User_Id = $Id)"; 
+            if ($result = mysqli_query($connection, $sql)) { 
+                // loop through the data 
+                while($row = mysqli_fetch_assoc($result)) {
+            ?>
+                    <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
+                        <td><?php echo "<a href='game_details.php?Title={$row['Title']}&Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
+                        <td><?php echo "<a href='series_details.php?series={$row['Series']}'>{$row['Series']}</a><br>\n" ?></td>
+                        <td><?php echo "<a href='developer_details.php?developer={$row['Developer']}'>{$row['Developer']}</a><br>\n" ?></td>
+                        <td><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></td>
+                        <td><?php echo $row['Release_Date'] ?></td>
+                    </tr>
+            <?php 
+                } 
+                // release the memory used by the result set 
+                mysqli_free_result($result);  
+            }  
+            // close the database connection 
+            mysqli_close($connection); 
+            ?> 
+        </table>
     </div>
 
     <!--scripts--> 

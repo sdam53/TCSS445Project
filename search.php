@@ -1,3 +1,7 @@
+<!--
+search page that gives search resutls for games, developers, publishers, and users based on search input
+-->
+
 <?php require_once('config.php'); ?>
 
 <!DOCTYPE html>
@@ -89,7 +93,7 @@
                 while($row = mysqli_fetch_assoc($result)) {
             ?>
                     <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
-                        <td><?php echo "<a href='game_details.php?Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
+                        <td><?php echo "<a href='game_details.php?Title={$row['Title']}&Id={$row['Id']}'>{$row['Title']}</a><br>\n" ?></td>
                         <td><?php echo "<a href='series_details.php?series={$row['Series']}'>{$row['Series']}</a><br>\n" ?></td>
                         <td><?php echo "<a href='developer_details.php?developer={$row['Developer']}'>{$row['Developer']}</a><br>\n" ?></td>
                         <td><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></td>

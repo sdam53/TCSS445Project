@@ -1,3 +1,7 @@
+<!--
+About page containing information on project and project members
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +60,11 @@
     <h1 class="text-center"> Welcome!!!<br> 
       This is TCSS 445 Group 6 Project<br> 
       Here you can look up and add reviews to your favorite games<br>
-      Developers: Shilnara Dam</h1>
+      Group Members: <br>
+      Shilnara Dam <br>
+      Aaron L Purslow <br>
+      Naomi Fletcher Nottingham 
+    </h1>
   </div>
 </body>
 </html>

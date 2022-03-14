@@ -1,3 +1,8 @@
+<!--
+home page that contains random three games in a slide show
+-->
+
+
 <?php require_once('config.php'); ?>
 
 <!DOCTYPE html>
