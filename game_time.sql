@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2022 at 03:06 AM
+-- Generation Time: Mar 15, 2022 at 01:45 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -91,7 +91,7 @@ INSERT INTO `game` (`Id`, `Title`, `Series`, `Developer`, `Publisher`, `Release_
 (9, 'KLONOA Phantasy Reverie Series', 'Klonoa', 'Bandai Namco', 'Bandai Namco', '2022-07-08', 'https://assets.nintendo.com/image/upload/ar_16:9,b_auto,c_pad,dpr_3.0,f_auto,q_auto,w_500/b_rgb:ffffff/v1/ncom/en_US/games/switch/k/klonoa-phantasy-reverie-series-switch/hero'),
 (10, 'StarCraft', 'StarCrafft', 'Blizzard Entertainment', 'Blizzard Entertainment', '1998-03-31', 'https://bnetcmsus-a.akamaihd.net/cms/blog_thumbnail/ay/AYJ0P9WLD7IP1602720127239.jpg'),
 (11, 'Pokémon Yellow', 'Pokémon', 'Game Freak', 'Nintendo', '1996-02-27', 'https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/game_boy_4/H2x1_GB_PokemonYellow_enGB_image1600w.jpg'),
-(12, 'Subnautica', 'StarCrafft', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2018-01-23', 'https://cdn.akamai.steamstatic.com/steam/apps/264710/capsule_616x353.jpg?t=1634241829'),
+(12, 'Subnautica', 'Subnautica', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2018-01-23', 'https://cdn.akamai.steamstatic.com/steam/apps/264710/capsule_616x353.jpg?t=1634241829'),
 (13, 'FINAL FANTASY XIV Online', 'Final Fantasy', 'Square Enix', 'Square Enix', '2014-02-18', 'https://cdn.akamai.steamstatic.com/steam/apps/39210/capsule_616x353.jpg?t=1638928577'),
 (14, 'Subnautica: Below Zero', 'Subnautica', 'Unknown Worlds Entertainment', 'Uknown Worlds Entertainment', '2021-05-13', 'https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_SubnauticaBelowZero_UnknownWorldsEntertainmentInc_S1_2560x1440-c8f0ba616d3dcd2ef3dcdd0c7d5e8967'),
 (15, 'Elden Ring', NULL, 'From Software', 'Bandai Namco', '2022-02-25', 'https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg?t=1646817776'),
@@ -287,8 +287,10 @@ INSERT INTO `owned_games` (`Game_Id`, `User_Id`, `Hours_Played`) VALUES
 (4, 3, 31),
 (4, 8, 81),
 (4, 11, 10),
+(5, 6, 11),
 (5, 7, 16),
 (5, 9, 7),
+(6, 7, 9),
 (6, 8, 2),
 (6, 10, 1),
 (7, 2, 7),
@@ -299,10 +301,15 @@ INSERT INTO `owned_games` (`Game_Id`, `User_Id`, `Hours_Played`) VALUES
 (11, 11, 50),
 (12, 2, 30),
 (12, 8, 5),
+(12, 11, 9),
+(13, 12, 40),
 (15, 1, 45),
+(15, 13, 12),
 (16, 12, 13),
 (17, 12, 20),
 (18, 6, 100),
+(18, 8, 25),
+(19, 9, 100),
 (20, 6, 20);
 
 -- --------------------------------------------------------
@@ -361,17 +368,28 @@ CREATE TABLE `review` (
 --
 
 INSERT INTO `review` (`Game_Id`, `User_Id`, `Head`, `Body`, `Rating`, `Date`) VALUES
+(1, 3, 'Managed to feed my Fatal Frame nostalgia.', 'Definitely weakest in the FF franchise, but still good.\r\nLore is great just like with other parts.\r\nI feel the difficulty is easier than the rest, but then again I played first three on PS2, it has been a long time.\r\nWould be great if we had an opportunity to play FF2: Crimson Butterfly, which by far was the best.', 7, '2022-03-14 22:54:35'),
 (1, 10, 'Emotional', 'It\'s been a long time since a video game\'s ending can make me this emotional. The characters are very well designed, especially Yuri and Ose. The game is super scary. I highly recommend playing with headphones.', 7, '2022-03-10 05:39:03'),
 (2, 2, 'Great Game', 'Great, overall story, but most of the lore happens behind the scenes. The ending portion of the game is also heavily rushed.', 8, '2022-03-10 05:39:03'),
 (3, 13, 'Super fun!', 'The combat is so much fun! Honestly, can\'t believe how much I love this game.', 6, '2022-03-10 05:39:48'),
 (4, 1, 'AMAZING!', 'After putting these many hours, I must say that this is one of the best, if not THE best RPG. Period.', 9, '2022-03-10 05:39:03'),
+(4, 2, 'By far the most fun I\'ve had with a Souls game. ', 'While the world is a bit more linear than DS1 and DS2, it more than makes up for it with much more fluid gameplay. I\'ve spent so much time playing it in different ways, including all \"normal\" builds, challenge runs like SL1, Skills only, no healing and magic only and with mods like Convergence. And even after over 700 hours, playing it is still enjoyable to me. Easily one of my favorite games and I can\'t recommend it enough.', 8, '2022-03-14 22:41:35'),
 (4, 11, 'HARD AF', NULL, 6, '2022-03-10 05:43:00'),
+(5, 6, 'BRRRRRRRRRR', 'Ultrakill make me go BRRRRRRRRRR and VRRRRRRRRRRRRRRRRRRRRRRR and RATATATATATATATATATATATA and KAPLOOEY', 8, '2022-03-14 23:18:20'),
 (5, 7, 'FAST', 'Amazing game, fast-paced action, challenging but not impossible. Easily the best game I\'ve played all year, with influences from other retro FPS games.', 10, '2022-03-10 05:40:19'),
 (5, 9, 'Great FPS!', 'Amazing game, fast paced action, challenging but not impossible. Easily the best game I\'ve played all year, with influences from other retro FPS games.', 3, '2022-03-10 05:40:48'),
+(6, 7, 'This is how a free game should be designed. ', 'You have the option to pay to win. BUT you don\'t need it at all. It lets you get the cards you need for any deck without being forced to pay money. Or grind for 100s of hours.', 7, '2022-03-14 23:21:50'),
 (6, 8, 'Terrible...', 'literally the worst card games I\'ve ever played. I\'m immeasurably disgusted by the infinite combos that guarantee the win each and every time.', 0, '2022-03-10 05:41:19'),
+(7, 10, 'Game is really fun!', 'Procedural roads means you\'ll never drive on the same road!\r\n\r\n18 unique environments.\r\n\r\n10 cars.\r\n\r\nThe ability to customise the texture of your car.\r\n\r\nThis game would have made a killing as an arcade machine in the 80s..', 8, '2022-03-14 22:40:42'),
 (10, 12, '\"My life for Aiur!\"', NULL, 10, '2022-03-10 05:41:43'),
 (11, 11, 'Nostalgia', NULL, 8, '2022-03-10 05:42:40'),
-(12, 8, 'Scary', 'I was afraid to go in the water. This game doesn\'t accommodate people with hydrophobia. Will be requesting a refund, IMMEDIATELY!', 0, '2022-03-10 05:42:15');
+(12, 8, 'Scary', 'I was afraid to go in the water. This game doesn\'t accommodate people with hydrophobia. Will be requesting a refund, IMMEDIATELY!', 0, '2022-03-10 05:42:15'),
+(13, 12, 'Best MMORPG I\'ve ever played, definitely worth checking out. ', 'One character, ALL content including classes, jobs etc. BASE GAME AND FIRST EXPANSION ARE NOW FREE TO PLAY, with some restrictions.', 9, '2022-03-14 23:19:44'),
+(14, 11, 'Too small', 'The issue is the map is too small, the game is scary but it doesn\'t have the size of the original or the depth in story, also the cyclops is not in the game so that\'s another negative, overall it feels as if the scope of this game has been lowered, i would still recommend as it is enjoyable, just not as enjoyable as the original', 6, '2022-03-14 23:20:42'),
+(15, 1, 'yes', 'Good game', 9, '2022-03-14 23:24:02'),
+(15, 13, 'The best video game I\'ve ever played.', 'The best video game I\'ve ever played.', 9, '2022-03-14 22:53:43'),
+(18, 8, 'Explore!', 'I LOVE how there is different planets to explore and its easier to get currency than other games!!', 7, '2022-03-14 23:17:40'),
+(19, 9, 'This Game was my Childhood', 'I couldn\'t tell you how many hours on PS3, PS4, XBOX360 i have spend escaping my problems by Completing Quests, Killing Dragons, Levelling up to the max to become a god! If you need the same then an adventure awaits!', 8, '2022-03-14 23:23:15');
 
 -- --------------------------------------------------------
 
