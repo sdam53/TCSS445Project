@@ -128,7 +128,7 @@ developer details page that gives information on a certain developer and lists a
                 while($row = mysqli_fetch_assoc($result)) {
             ?>
                     <th scope="row"><img src=<?php echo $row['Image'] ?> width="100"  height=auto></th>
-                    <td><?php echo "<a href='series_details.php?series={$row['Series']}'>{$row['Series']}</a><br>\n" ?></td>
+                        <td><?php echo "<a href='series_details.php?series={$row['Series']}'>{$row['Series']}</a><br>\n" ?></td>
                         <td><?php echo "<a href='developer_details.php?developer={$row['Developer']}'>{$row['Developer']}</a><br>\n" ?></td>
                         <td><?php echo "<a href='publisher_details.php?publisher={$row['Publisher']}'>{$row['Publisher']}</a><br>\n" ?></td>
                         <td><?php echo $row['Release_Date'] ?></td>
